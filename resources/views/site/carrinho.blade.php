@@ -47,7 +47,7 @@
                 {{-- BTN REMOVER --}}
                 <form action="{{ route('site.removecarrinho')}}" method="POST" enctype="multipart/form-data">
                     @csrf
-                <input type="hidden" name="id" value="{{$item->id }}">    
+                <input type="hidden" name="id" value="{{$item->index }}">    
                 <button class="btn-floating waves-effect waves-light red"><i class="material-icons">delete</i></button>
                 </form>
             </td>
@@ -58,8 +58,18 @@
       </table>
 
       <div class="row container center">
+
+{{--BNT CONTINUAR COMPRANDO--}}
+        <form action="{{ route('site.index')}}" method="GET" enctype="multipart/form-data">
+          @csrf
         <button class="btn waves-effect waves-light blue"> Continuar comprando <i class="material-icons right">arrow_back</i></button>
+      </form>
+
+<form action="{{ route('site.limparcarrinho')}}" method="DELETE" enctype="multipart/form-data">
+                    @csrf
         <button class="btn waves-effect waves-light blue"> Limpar o carrinho <i class="material-icons right">clear</i></button>
+
+        
         <button class="btn waves-effect waves-light green"> Finalizar pedido <i class="material-icons right">chek</i></button>
       </div>
 
