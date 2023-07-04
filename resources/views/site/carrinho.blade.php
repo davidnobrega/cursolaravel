@@ -53,14 +53,17 @@
             <td>{{$item->name}}</td>
             <td>{{$item->price}}</td>
             <td><input type="number" name="quantity" value="{{$item->quantity}}"></td>
+            
             <td>
 {{-- BTN ATUALIZAR --}}
                 <form action="{{ route('site.atualizacarrinho')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                 <input type="hidden" name="id" value="{{$item->id }}">
-                <td><input style="width: 50px; front-weight:900;" class="white center" min="1" type="number" name="quantity" value="{{ $item->price }}">
+                <td><input style="width: 60px; font-weight:900;" class="white center" min="1" type="number" name="quantity" value="{{ $item->price }}">
                 <button class="btn-floating waves-effect waves-light orange"><i class="material-icons">refresh</i></button>
                 </form>
+              
+                
                     
 {{-- BTN REMOVER --}}
                 <form action="{{ route('site.removecarrinho')}}" method="POST" enctype="multipart/form-data">
@@ -68,13 +71,14 @@
                 <input type="hidden" name="id" value="{{$item->index }}">    
                 <button class="btn-floating waves-effect waves-light red"><i class="material-icons">delete</i></button>
                 </form>
+              </td>
             </td>
           </tr>
           @endforeach
           
         </tbody>
       </table>
-        <h5>Valor Total: {{\Cart::getTotal()}} </h5>
+        <h5>Valor Total: {{ number_format(\Cart::getTotal(), 2, ',', '.')}} </h5>
     @endif
     
 

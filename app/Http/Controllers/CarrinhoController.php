@@ -15,7 +15,7 @@ class CarrinhoController extends Controller
             'id' => $request->request->all()['id'],
             'name' => $request->request->all()['name'],
             'price' => $request->request->all()['price'],
-            'quantity' => abs($request->qnt),
+            'quantity' => abs($request->request->all()['qnt']),
             'attributes' => array(
                 'image' => $request->request->all()['image'],
             )
