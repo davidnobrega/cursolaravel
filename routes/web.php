@@ -17,12 +17,4 @@ Route::post('/remover', [CarrinhoController::class, 'removeCarrinho'])->name('si
 Route::post('/atualizar', [CarrinhoController::class, 'atualizaCarrinho'])->name('site.atualizacarrinho');
 Route::get('/retornar', [RetornarController::class, 'continuarComprando'])->name('site.continuarcomprando');
 Route::get('/limpar', [CarrinhoController::class, 'limparCarrinho'])->name('site.limparcarrinho');
-
-
-
-
-
-
-
-
-
+/*Route::get('/finalizar', [CarrinhoController::class, 'finalizarPedido'])->name('https://pagseguro.uol.com.br/');*/

@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 
 class CarrinhoController extends Controller
@@ -16,7 +15,7 @@ class CarrinhoController extends Controller
             'id' => $request->request->all()['id'],
             'name' => $request->request->all()['name'],
             'price' => $request->request->all()['price'],
-            'quantity' => $request->request->all()['qnt'],
+            'quantity' => abs($request->qnt),
             'attributes' => array(
                 'image' => $request->request->all()['image'],
             )
@@ -36,7 +35,7 @@ class CarrinhoController extends Controller
         \Cart::update($request->id, [
             'quantity' => [
                 'relative' => false,
-                'value' => $request->quantity
+                'value' => abs($request->quantity)
             ],
         ]);
         return redirect()->route('site.carrinho')->with('sucesso', 'Carrinhoo atualizado com sucesso!');
@@ -46,13 +45,14 @@ class CarrinhoController extends Controller
         return redirect()->route('site.index');
     }
 
-    public function limparCarrinho(Request $request) {
-        \Cart::remove($request->id, [
-            'quantity' => [
-                'relative' => false,
-                'value' => $request->quantity
-            ],
-        ]);
-        return redirect()->route('site.limparcarrinho')->with('Carrinho vazio!');
+    public function limparCarrinho() {
+        \Cart::clear();
+            
+        return redirect()->route('site.carrinho')->with('Carrinho vazio!');
     }
 }
+
+   /* public function finalizarPedido (Request $id) {
+        return redirect()->route('https://pagseguro.uol.com.br/');
+    }
+}*/
